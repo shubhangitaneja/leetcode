@@ -77,3 +77,37 @@ var romanToInt2 = function(s) {
     }
     return num;
 };
+
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function(num) {
+    const intRomanMap = {
+        1: 'I',
+        4: 'IV',
+        5: 'V',
+        9: 'IX',
+        10: 'X',
+        40: 'XL',
+        50: 'L',
+        90: 'XC',
+        100: 'C',
+        400: 'CD',
+        500: 'D',
+        900: 'CM',
+        1000: 'M',
+    };
+    let romanNumber = '';
+    let quotient = 0;
+    const checkVals = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+    while (num > 0) {
+        let checkVal = checkVals.pop();
+        quotient = Math.floor(num/checkVal);
+        num = num % checkVal;
+        if (quotient > 0) {
+          romanNumber += intRomanMap[checkVal].repeat(quotient);
+        }
+    }
+    return romanNumber;    
+};
